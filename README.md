@@ -68,34 +68,22 @@ cd your-project-name
 rm -rf .git
 ```
 
-5. Go to the client directory
+5. Generate React app
 
 ```sh
-cd client
+npx create-react-app client --template redux
 ```
 
-6. Generate React app
-
-```sh
-npx create-react-app . --template redux
-```
-
-7. Go to the main directory
-
-```sh
-cd ..
-```
-
-8. Rename .env-sample with .env
+6. Rename .env-sample with .env
 
 ```sh
 mv .env-sample .env
 ```
 
-9. Edit .env file with your parameters
+7. Edit .env file with your parameters
 
 ```sh
-NODE_ENV =production
+NODE_ENV=production
 INLINE_RUNTIME_CHUNK=false
 WEB_APP=WEB
 VIRTUAL_HOST=sample.website.com
@@ -103,10 +91,10 @@ VIRTUAL_NETWORK=nginx-proxy
 VIRTUAL_PORT=8080
 LETSENCRYPT_HOST=sample.website.com
 LETSENCRYPT_EMAIL=sample@website.com
-VOLUME_PATH= ./volumes
+VOLUME_PATH=./volumes
 ```
 
-10. Run with Docker Compose
+8. Run with Docker Compose
 
 ```sh
 docker-compose up -d

@@ -62,37 +62,31 @@ mv cra-redux-node-nginx-lets-encrypt-with-docker-compose your-project-name
 cd your-project-name
 ```
 
-4. Install NPM packages
-
-```sh
-npm install
-```
-
-5. Go to the client directory
+4. Go to the client directory
 
 ```sh
 cd client
 ```
 
-6. Generate React app
+5. Generate React app
 
 ```sh
 npx create-react-app . --template redux
 ```
 
-7. Go to the main directory
+6. Go to the main directory
 
 ```sh
 cd ..
 ```
 
-8. Rename .env-sample with .env
+7. Rename .env-sample with .env
 
 ```sh
 mv .env-sample .env
 ```
 
-9. Edit .env file with your parameters
+8. Edit .env file with your parameters
 
 ```sh
 NODE_ENV =production
@@ -106,7 +100,7 @@ LETSENCRYPT_EMAIL=sample@website.com
 VOLUME_PATH= ./volumes
 ```
 
-10. Run with Docker Compose
+9. Run with Docker Compose
 
 ```sh
 docker-compose up -d

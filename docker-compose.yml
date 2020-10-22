@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  web:
+    build: .
+    container_name: ${WEB_APP}
+    restart: always
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - VIRTUAL_PORT=${VIRTUAL_PORT}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+      - NODE_ENV=${NODE_ENV}
+    ports:
+      - "${VIRTUAL_PORT}:${VIRTUAL_PORT}"
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    restart: always
+    labels:
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ${VOLUME_PATH}/conf:/etc/nginx/conf.d
+      - ${VOLUME_PATH}/vhost:/etc/nginx/vhost.d
+      - ${VOLUME_PATH}/html:/usr/share/nginx/html
+      - ${VOLUME_PATH}/certs:/etc/nginx/certs:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  letsencrypt-nginx-proxy:
+    container_name: letsencrypt-nginx-proxy
+    image: jrcs/letsencrypt-nginx-proxy-companion:stable
+    depends_on:
+      - nginx-proxy
+    restart: always
+    volumes:
+      - ${VOLUME_PATH}/conf:/etc/nginx/conf.d
+      - ${VOLUME_PATH}/vhost:/etc/nginx/vhost.d
+      - ${VOLUME_PATH}/html:/usr/share/nginx/html
+      - ${VOLUME_PATH}/certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+networks:
+    default:
+       external:
+         name: ${VIRTUAL_NETWORK}

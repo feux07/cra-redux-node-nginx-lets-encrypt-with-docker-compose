@@ -24,12 +24,13 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [License](#license)
-* [Contact](#contact)
+- [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation & Usage](#installation--usage)
+- [Docs](#docs)
+- [License](#license)
+- [Contact](#contact)
 
 
 <!-- GETTING STARTED -->
